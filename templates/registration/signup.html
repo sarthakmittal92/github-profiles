@@ -1,0 +1,28 @@
+<!-- templates/registration/signup.html -->
+{% extends 'base.html' %}
+
+<head>
+  <link rel="stylesheet" href="../../static/style.css">
+</head>
+
+{% block title %}Sign Up{% endblock %}
+
+<body>
+<div class="center">
+<main>
+{% block content %}
+  <div class="center">
+  <button class="submitButton"><a href="/signup/">Sign Up</a></button>
+  <button class="submitButton"><a href="/accounts/login">Login</a></button>
+  </div>
+  <h2>Sign Up</h2>
+  
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="submitButton" type="submit">Sign Up</button>
+  </form>
+{% endblock %}
+</main>
+<!-- </div> -->
+</body>

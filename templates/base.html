@@ -1,0 +1,21 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="../static/style.css">
+  <meta charset="utf-8">
+  <title>{% block title %}Base Template{% endblock %}</title>
+</head>
+
+<div class="center">
+  <p id="redtxt">Built by 200050099-200050129</p>
+  <h1>Welcome to GitHub Profiles!</h1>
+</div>
+
+<body>
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+</body>
+</html>

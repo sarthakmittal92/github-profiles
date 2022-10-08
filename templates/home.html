@@ -1,0 +1,26 @@
+<!-- templates/home.html-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../static/style.css">
+  <title>{% block title %}Home{% endblock %}</title>
+</head>
+<body>
+  <div class="center">
+  <p id="redtxt">Built by 200050099-200050129</p> 
+  <main>
+    {% block content %}
+    {% if user.is_authenticated %}
+      <p>Hi {{ user.username }}!</p>
+      <button class ="submitButton"><a href="{% url 'logout' %}">Log Out</a></button>
+    {% else %}
+    <p>You are not logged in</p>
+    <button class="submitButton"><a href="/signup/">Sign Up</a></button>
+    <button class="submitButton"><a href="{% url 'login' %}">Log In</a></button>
+    {% endif %}
+    {% endblock %}
+  </main>
+  </div>
+</body>
+</html>

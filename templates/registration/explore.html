@@ -1,0 +1,29 @@
+<!-- templates/registration/explore.html -->
+{% extends 'base.html' %}
+
+<head>
+    <link rel="stylesheet" href="../../static/style.css">
+</head>
+
+{% block title %}Explore{% endblock %}
+
+
+{% block content %}
+<div class="center">
+
+<button class="submitButton"><a href="/explore">Explore</button></a>
+{% if user.is_authenticated %}
+    <button class="submitButton"><a href="/profile/{{ user.username }}">My Profile</a></button>
+{% endif %}
+
+<button class="submitButton"><a href="{% url 'logout' %}">Logout</a></button>
+</div>
+{% if profiles %}
+    <ul>
+    {% for profile in profiles %}
+        <li><button class="submitButton2"><a id="bluetxt" href="/profile/{{ profile.login }}/">{{ profile.login }}</a></button></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock %}

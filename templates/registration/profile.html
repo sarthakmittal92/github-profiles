@@ -1,0 +1,83 @@
+<!-- templates/registration/profile.html -->
+<!DOCTYPE html>
+<!-- {% load static %} -->
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="{% static 'style.css' %}"> -->
+    <style>
+        .center {
+        margin: auto;
+        text-align:center;
+        width: 100%;
+        line-height: 50%;
+    }
+
+    .submitButton {
+        background-color: #0191FE;
+        color: white;
+        border-radius: 5px;
+        border: none;
+        padding: 10px 30px;
+        margin-top: 20px;
+    }
+
+    .submitButton2 {
+        background-color: white;
+        color:  #0191FE;
+        border-radius: 5px;
+        padding: 10px 30px;
+        margin-top: 20px;
+    }
+
+    a:link {
+        text-decoration: none;
+        color :white;
+    }   
+
+    #bluetxt {
+        color:blue;
+    }
+
+    #redtxt {
+        color: red;
+    }
+    </style>
+    <title>{% block title %}Profile{% endblock %}</title>
+</head>
+
+<body>
+<div class="center">
+    <p id="redtxt">Built by 200050099-200050129</p>
+    <h1>Welcome to GitHub Profiles!</h1>
+    <button style="background-color: #0191FE;color:white;border-radius: 5px;border: none;padding: 10px 30px;margin-top: 20px;"><a href="/explore">Explore</button></a>
+    <button style="background-color: #0191FE;color:white;border-radius: 5px;border: none;padding: 10px 30px;margin-top: 20px;"><a href="/profile/{{ user.username }}">My Profile</a></button>
+    <button style="background-color: #0191FE;color:white;border-radius: 5px;border: none;padding: 10px 30px;margin-top: 20px;"><a href="{% url 'logout' %}">Logout</a></button>
+</div>
+
+{% block content %}
+
+{% if profile %}
+    <h1> {{ profile.name }} (@{{profile.login}}) </h1>
+    <p>{{ profile.followers }} followers</p>
+    <p>Profile last updated : {{ profile.updated_at }} 
+    {% if user.username == profile.login %} 
+        <button style="background-color: #0191FE;color:white;border-radius: 5px;border: none;padding: 10px 30px;margin-top: 20px;"><a href="/update/{{ user.username }}">(Update Now)</a></button>
+    {% endif %} </p>
+{% endif %}
+
+{% if user.is_authenticated %}
+{{ error }}
+{% endif %}
+
+{% if repos %}
+    <ul>
+    {% for repo in repos %}
+        <li>{{ repo.name }} - {{ repo.stars }} stars</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock %}
+</body>
+</html>
